@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"../../internal/app/apiserver/apiserver.go"
+	"github.com/iavealokin/MoneyDrive/internal/app/apiserver"
 )
 
 func main() {

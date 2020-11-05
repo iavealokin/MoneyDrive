@@ -1,13 +1,11 @@
 package apiserver
 
-
 type APIServer struct{}
 
-func new() *APIServer{
+func New() *APIServer {
 	return &APIServer{}
 }
 
-
-func (s *APIServer) Start() error{
+func (s *APIServer) Start() error {
 	return nil
 }
