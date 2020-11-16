@@ -10,10 +10,11 @@ import (
 type Store struct {
 	config *Config
 	db *sql.DB
+	UserRepository *UserRepository
 }
 
 func New(config *Config) *Store {
-	return &Config{
+	return &Store{
 		config: config,
 	}
 }
@@ -24,7 +25,7 @@ func (s *Store) Open() error {
 		return err
 	}
 
-if err != db.Ping(); err!= nil{
+if err := db.Ping(); err!= nil{
 	return err
 }
 
@@ -34,4 +35,16 @@ s.db = db
 
 func (s *Store) Close() {
 	s.db.Close()
+}
+
+
+func (s *Store) User() *UserRepository{
+	if s.UserRepository!= nil{
+		return s.UserRepository
+	}
+
+	s.UserRepository=&UserRepository{
+		store: s,
+	}
+		return s.UserRepository
 }
