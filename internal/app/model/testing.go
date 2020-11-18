@@ -4,7 +4,7 @@ import "testing"
 
 func TestUser(t *testing.T) *User {
 	return &User{
-	Email: "user@user.user",
+	Email: "user@user.org",
 	Password: "password",
 }
 }

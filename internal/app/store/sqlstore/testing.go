@@ -1,7 +1,8 @@
-package store
+package sqlstore
 
 import (
 	"database/sql"
+	"fmt"
 	"strings"
 	"testing"
 )
@@ -20,7 +21,7 @@ if err := db.Ping(); err!= nil{
 }
  return db, func(tables ...string){
 	 if len(tables) > 0 {
-		 db.Exec("TRUNCATE %s CASCADE",strings.Join(tables, ", "))
+		db.Exec(fmt.Sprintf("TRUNCATE %s CASCADE", strings.Join(tables, ", ")))
 	 	}
 
 	 	db.Close()
