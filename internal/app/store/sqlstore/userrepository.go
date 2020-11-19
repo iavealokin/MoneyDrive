@@ -1,6 +1,11 @@
 package sqlstore
 
-import "github.com/iavealokin/MoneyDrive/internal/app/model"
+import (
+	"database/sql"
+
+	"github.com/iavealokin/MoneyDrive/internal/app/model"
+	"github.com/iavealokin/MoneyDrive/internal/app/store"
+)
 
 type UserRepository struct {
 	store *Store
@@ -34,6 +39,9 @@ func (r *UserRepository) FindByEmail(email string) (*model.User, error) {
 			&u.Email,
 			&u.EncryptedPassword,
 	); err != nil{
+		if err == sql.ErrNoRows{
+			return nil, store.ErrRecordNotFound
+		}
 		return nil,err
 	}
 	return u, nil

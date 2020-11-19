@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/iavealokin/MoneyDrive/internal/app/model"
+	"github.com/iavealokin/MoneyDrive/internal/app/store"
 	"github.com/iavealokin/MoneyDrive/internal/app/store/teststore"
 	"github.com/stretchr/testify/assert"
 )
@@ -23,7 +24,7 @@ func TestUserRepository_FindByEmail (t *testing.T){
 
 	email :="user@user.org"
 	_, err :=s.User().FindByEmail(email)
-	assert.Error(t, err)	
+	assert.EqualError(t, err, store.ErrRecordNotFound.Error())	
 
 	u := model.TestUser(t)
 	u.Email= email
