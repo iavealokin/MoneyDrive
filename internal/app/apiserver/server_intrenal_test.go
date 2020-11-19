@@ -15,7 +15,7 @@ import (
 
 
 func TestServer_HandleUsersCreate(t *testing.T) {
-	s := newServer(teststore.New(),sessions.NewCookieStore([]byte("*secret*")))
+	s := newServer(teststore.New(),sessions.NewCookieStore([]byte("secret")))
 	testCases:=[]struct{
 		name string
 		payload interface{}
@@ -61,7 +61,7 @@ func TestServer_HandleSessionsCreate( t *testing.T){
 	 u := model.TestUser(t)
 	 store := teststore.New()
 	 store.User().Create(u)
-	 s := newServer(teststore.New(),sessions.NewCookieStore([]byte("secret")))
+	 s := newServer(store,sessions.NewCookieStore([]byte("secret")))
 	testCases := []struct{
 		name 	 	 string
 		payload 	 interface{}

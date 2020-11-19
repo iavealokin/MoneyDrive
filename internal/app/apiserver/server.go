@@ -14,6 +14,7 @@ import (
 
 var (
 errIncorrectEmailOrPassword = errors.New("Incorrect email or password")
+sessionName = "moneydrive"
 )
 
 type server struct {
@@ -90,6 +91,16 @@ func (s *server) handleSessionsCreate() http.HandlerFunc{
 			return 
 		}
 
+		session, err:= s.sessionStore.Get(r, sessionName)
+		if err!= nil{
+			s.error(w, r, http.StatusInternalServerError, err)
+			return
+		}
+		session.Values["user_id"]=u.ID
+		if err := s.sessionStore.Save(r, w, session); err!=nil{
+			s.error(w, r, http.StatusInternalServerError, err)
+			return
+		}
 		s.respond(w, r, http.StatusOK, nil)
 	}
 }
