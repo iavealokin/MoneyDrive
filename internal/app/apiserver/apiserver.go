@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"net/http"
 
+	"github.com/gorilla/sessions"
 	"github.com/iavealokin/MoneyDrive/internal/app/store/sqlstore"
 )
 
@@ -14,7 +15,8 @@ if err != nil{
 }
 	defer db.Close()
 	store := sqlstore.New(db)
-	srv := newServer(store)
+	sessionStore := sessions.NewCookieStore([]byte(config.SessionKey))
+	srv := newServer(store, sessionStore)
 
 	return http.ListenAndServe(config.BindAddr,srv)
 }
