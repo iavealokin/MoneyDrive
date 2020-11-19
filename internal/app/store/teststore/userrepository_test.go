@@ -1,19 +1,16 @@
-package sqlstore_test
+package teststore_test
 
 import (
 	"testing"
 
 	"github.com/iavealokin/MoneyDrive/internal/app/model"
-	"github.com/iavealokin/MoneyDrive/internal/app/store/sqlstore"
+	"github.com/iavealokin/MoneyDrive/internal/app/store/teststore"
 	"github.com/stretchr/testify/assert"
 )
 
 
 func TestUserRepository_Create(t *testing.T){
-	db, teardown := sqlstore.TestDB(t,databaseURL)
-	defer teardown("users")
-
-	s:= sqlstore.New(db)
+	s:= teststore.New()
 	u := model.TestUser(t)
 	assert.NoError(t, s.User().Create(u))
 	assert.NotNil(t, u)
@@ -21,10 +18,7 @@ func TestUserRepository_Create(t *testing.T){
 
 
 func TestUserRepository_FindByEmail (t *testing.T){
-	db, teardown := sqlstore.TestDB(t,databaseURL)
-	defer teardown("users")
-
-	s:= sqlstore.New(db)
+	s:= teststore.New()
 
 
 	email :="user@user.org"

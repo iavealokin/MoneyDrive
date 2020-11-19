@@ -1,22 +1,17 @@
-package sqlstore
+package teststore
 
 import (
-	"database/sql"
-
+	"github.com/iavealokin/MoneyDrive/internal/app/model"
 	"github.com/iavealokin/MoneyDrive/internal/app/store"
-	_ "github.com/lib/pq" // ....
 )
 
 //Store ..
 type Store struct {
-	db *sql.DB
 	UserRepository *UserRepository
 }
 
-func New(db *sql.DB) *Store {
-	return &Store{
-		db: db,
-	}
+func New() *Store {
+
 }
 
 func (s *Store) User() store.UserRepository{
@@ -26,6 +21,7 @@ func (s *Store) User() store.UserRepository{
 
 	s.UserRepository=&UserRepository{
 		store: s,
+		users: make(map[string]*model.User),
 	}
 		return s.UserRepository
 }
