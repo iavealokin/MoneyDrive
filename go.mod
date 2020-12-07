@@ -10,6 +10,7 @@ require (
 	github.com/gorilla/sessions v1.2.1
 	github.com/julienschmidt/httprouter v1.3.0 // indirect
 	github.com/lib/pq v1.8.0
+	github.com/recoilme/pudge v1.0.3
 	github.com/sirupsen/logrus v1.7.0
 	github.com/sqs/goreturns v0.0.0-20181028201513-538ac6014518 // indirect
 	github.com/stretchr/testify v1.6.1

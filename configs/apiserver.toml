@@ -1,4 +1,4 @@
 bind_addr = ":8080"
 log_level = "debug"
-database_url = "host=localhost user=Alexandr password=Cfyz11005310 dbname=moneydrive_dev sslmode=disable"
+database_url2 = "host=rc1a-bav0um35z7zxwm5w.mdb.yandexcloud.net user=Alexandr password=Cfyz11005310 dbname=moneydrive_dev sslmode=off"
 session_key = "B6D5443D3F2BE2F206A22EBF6EC7271259B68074C9FB86492855300DFDB309031F7E65EFA0DB0AA2876E69BB4031F00C55297A31148C5E6E8107FE82C6D20D55"
